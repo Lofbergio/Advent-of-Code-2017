@@ -28,5 +28,10 @@ namespace Helper
 
             return input;
         }
+
+        public static TResult TestInput<TResult>(this string entry, Func<string, TResult> action)
+        {
+            return action(entry);
+        }
     }
 }
