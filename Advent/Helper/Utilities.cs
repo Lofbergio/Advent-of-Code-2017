@@ -18,9 +18,7 @@ namespace Helper
             if (!File.Exists(filepath))
                 throw new FileNotFoundException($"Could not find {filepath}");
 
-            string input;
-            using (var fs = new StreamReader(filepath))
-                input = fs.ReadToEnd();
+            var input = File.ReadAllText(filepath);
 
             Console.WriteLine("------- Start of input -------");
             Console.WriteLine(input);
@@ -29,9 +27,6 @@ namespace Helper
             return input;
         }
 
-        public static TResult TestInput<TResult>(this string entry, Func<string, TResult> action)
-        {
-            return action(entry);
-        }
+        public static TResult TestResultOf<TResult>(this string entry, Func<string, TResult> action) => action(entry);
     }
 }
