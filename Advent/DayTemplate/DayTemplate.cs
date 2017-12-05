@@ -23,26 +23,26 @@ namespace Advent
                                  { "1", 2 }
                              };
 
-            if (part1Tests.All(t => t.Key.TestResultOf(Part1) == t.Value))
-            {
-                var p1 = Part1(input);
+            if (part1Tests.Any(t => t.Key.TestResultOf(Part1) != t.Value))
+                throw new Exception("Failed Part1 tests");
 
-                WriteLine($"First part answer: {p1}");
-                Clipboard.SetText(p1.ToString());
+            var p1 = Part1(input);
 
-                var part2Tests = new Dictionary<string, int>
-                                 {
-                                     { "1", 2 }
-                                 };
+            WriteLine($"Part1 answer: {p1}");
+            Clipboard.SetText(p1.ToString());
 
-                if (part2Tests.All(t => t.Key.TestResultOf(Part2) == t.Value))
-                {
-                    var p2 = Part2(input);
+            var part2Tests = new Dictionary<string, int>
+                                {
+                                    { "1", 2 }
+                                };
 
-                    WriteLine($"Second part answer: {p2}");
-                    Clipboard.SetText(p2.ToString());
-                }
-            }
+
+            if (part2Tests.Any(t => t.Key.TestResultOf(Part2) != t.Value))
+                throw new Exception("Failed Part2 tests");
+
+            var p2 = Part2(input);
+            WriteLine($"Part2 answer: {p2}");
+            Clipboard.SetText(p2.ToString());
 
             ReadKey();
         }
