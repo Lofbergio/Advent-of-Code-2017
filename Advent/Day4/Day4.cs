@@ -45,7 +45,7 @@ namespace Day4
                 {
                     var p2 = Part2(input);
 
-                    WriteLine($"First part answer: {p2}");
+                    WriteLine($"Second part answer: {p2}");
                     Clipboard.SetText(p2.ToString());
                 }
             }
