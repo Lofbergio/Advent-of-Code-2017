@@ -8,17 +8,18 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Helper;
 using static System.Console;
+using System.Threading.Tasks;
 
 #endregion
 
-namespace Day2
+namespace Day02
 {
-    internal static class Day2
+    internal static class Day02
     {
         [STAThread]
         private static void Main()
         {
-            var input = Utilities.GetInput(typeof (Day2).Name);
+            var input = Task.Run(async () => await Utilities.GetInput(typeof(Day02).Name)).Result;
 
             var part1Tests = new Dictionary<string, int>
                              {
@@ -27,13 +28,12 @@ namespace Day2
 2 4 6 8", 18 }
                              };
 
-            if (part1Tests.All(t => t.Key.TestResultOf(Part1) == t.Value))
-            {
-                var sum = Part1(input);
+            if (part1Tests.Any(t => t.Key.TestResultOf(Part1) != t.Value))
+                throw new Exception("Failed Part1 tests");
 
-                WriteLine($"First part answer: {sum}");
-                Clipboard.SetText(sum.ToString());
-            }
+            var p1 = Part1(input);
+            WriteLine($"Part1 answer: {p1}");
+            Clipboard.SetText(p1.ToString());
 
             var part2Tests = new Dictionary<string, int>
                              {
@@ -42,13 +42,12 @@ namespace Day2
 3 8 6 5", 9 }
                              };
 
-            if (part2Tests.All(t => t.Key.TestResultOf(Part2) == t.Value))
-            {
-                var sum = Part2(input);
+            if (part2Tests.Any(t => t.Key.TestResultOf(Part2) != t.Value))
+                throw new Exception("Failed Part2 tests");
 
-                WriteLine($"First part answer: {sum}");
-                Clipboard.SetText(sum.ToString());
-            }
+            var p2 = Part2(input);
+            WriteLine($"Part2 answer: {p2}");
+            Clipboard.SetText(p2.ToString());
 
             ReadKey();
         }

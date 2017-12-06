@@ -3,20 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Helper;
 using static System.Console;
 
 #endregion
 
-namespace Day3
+namespace Day03
 {
-    internal static class Day3
+    internal static class Day03
     {
         [STAThread]
         private static void Main()
         {
-            var input = Utilities.GetInput(typeof(Day3).Name);
+            var input = Task.Run(async () => await Utilities.GetInput(typeof(Day03).Name)).Result;
 
             var part1Tests = new Dictionary<string, int>
             {
@@ -26,18 +27,16 @@ namespace Day3
                 { "1024", 31 }
             };
 
-            if (part1Tests.All(t => t.Key.TestResultOf(Part1) == t.Value))
-            {
-                var distance = Part1(input);
+            if (part1Tests.Any(t => t.Key.TestResultOf(Part1) != t.Value))
+                throw new Exception("Failed Part1 tests");
 
-                WriteLine($"First part answer: {distance}");
-                Clipboard.SetText(distance.ToString());
+            var p1 = Part1(input);
+            WriteLine($"Part1 answer: {p1}");
+            Clipboard.SetText(p1.ToString());
 
-                var sum = Part2(input);
-
-                WriteLine($"First part answer: {sum}");
-                Clipboard.SetText(sum.ToString());
-            }
+            var p2 = Part2(input);
+            WriteLine($"Part2 answer: {p2}");
+            Clipboard.SetText(p2.ToString());
 
             ReadKey();
         }

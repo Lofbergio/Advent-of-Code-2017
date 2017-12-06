@@ -3,20 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Helper;
 using static System.Console;
 
 #endregion
 
-namespace Day6
+namespace Day06
 {
-    internal static class Day6
+    internal static class Day06
     {
         [STAThread]
         private static void Main()
         {
-            var input = Utilities.GetInput(typeof (Day6).Name);
+            var input = Task.Run(async () => await Utilities.GetInput(typeof (Day06).Name)).Result;
 
             var part1Tests = new Dictionary<string, int>
                              {

@@ -3,20 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Helper;
 using static System.Console;
 
 #endregion
 
-namespace Day4
+namespace Day04
 {
-    internal static class Day4
+    internal static class Day04
     {
         [STAThread]
         private static void Main()
         {
-            var input = Utilities.GetInput(typeof(Day4).Name);
+            var input = Task.Run(async () => await Utilities.GetInput(typeof(Day04).Name)).Result;
 
             var part1Tests = new Dictionary<string, int>
             {
@@ -25,30 +26,28 @@ namespace Day4
                 { "aa bb cc dd aaa", 1 }
             };
 
-            if (part1Tests.All(t => t.Key.TestResultOf(Part1) == t.Value))
-            {
-                var p1 = Part1(input);
+            if (part1Tests.Any(t => t.Key.TestResultOf(Part1) != t.Value))
+                throw new Exception("Failed Part1 tests");
 
-                WriteLine($"First part answer: {p1}");
-                Clipboard.SetText(p1.ToString());
+            var p1 = Part1(input);
+            WriteLine($"Part1 answer: {p1}");
+            Clipboard.SetText(p1.ToString());
 
-                var part2Tests = new Dictionary<string, int>
-                                 {
-                                     { "abcde fghij", 1 },
-                                     { "abcde xyz ecdab", 0 },
-                                     { "a ab abc abd abf abj", 1 },
-                                     { "iiii oiii ooii oooi oooo", 0 },
-                                     { "oiii ioii iioi iiio", 0 }
-                                 };
+            var part2Tests = new Dictionary<string, int>
+                                {
+                                    { "abcde fghij", 1 },
+                                    { "abcde xyz ecdab", 0 },
+                                    { "a ab abc abd abf abj", 1 },
+                                    { "iiii oiii ooii oooi oooo", 0 },
+                                    { "oiii ioii iioi iiio", 0 }
+                                };
 
-                if (part2Tests.All(t => t.Key.TestResultOf(Part2) == t.Value))
-                {
-                    var p2 = Part2(input);
+            if (part2Tests.Any(t => t.Key.TestResultOf(Part2) != t.Value))
+                throw new Exception("Failed Part2 tests");
 
-                    WriteLine($"Second part answer: {p2}");
-                    Clipboard.SetText(p2.ToString());
-                }
-            }
+            var p2 = Part2(input);
+            WriteLine($"Part2 answer: {p2}");
+            Clipboard.SetText(p2.ToString());
 
             ReadKey();
         }

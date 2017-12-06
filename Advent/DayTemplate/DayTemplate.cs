@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Helper;
 using static System.Console;
@@ -16,7 +17,7 @@ namespace Advent
         [STAThread]
         private static void Main()
         {
-            var input = Utilities.GetInput(typeof (DayTemplate).Name);
+            var input = Task.Run(async () => await Utilities.GetInput(typeof(DayTemplate).Name)).Result;
 
             var part1Tests = new Dictionary<string, int>
                              {
