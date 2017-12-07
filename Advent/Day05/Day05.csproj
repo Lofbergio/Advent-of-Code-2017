@@ -7,8 +7,8 @@
     <ProjectGuid>{9C2E2F01-D2F3-4CAF-994B-7BA00D1221CB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Day5</RootNamespace>
-    <AssemblyName>Day5</AssemblyName>
+    <RootNamespace>Day05</RootNamespace>
+    <AssemblyName>Day05</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
