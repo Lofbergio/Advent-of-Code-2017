@@ -84,7 +84,7 @@ namespace Helper
 
                     // Web content always contains an extra newline at the end
                     using (var fs = File.CreateText(saveFilePath))
-                        fs.Write(content.Replace("\n", Environment.NewLine).TrimEnd('\n'));
+                        fs.Write(content.Replace("\n", Environment.NewLine).TrimEnd('\n').TrimEnd('\r'));
                 }
         }
     }
