@@ -12,7 +12,7 @@ using static System.Console;
 
 namespace Day10
 {
-    internal static class Day10
+    public static class Day10
     {
         [STAThread]
         private static void Main()
@@ -45,7 +45,7 @@ namespace Day10
             return processedList[0] * processedList[1];
         }
 
-        private static string Part2(string input)
+        public static string Part2(string input)
         {
             var processedList = ProcessList(input, true);
 
@@ -66,10 +66,10 @@ namespace Day10
 
         private static List<int> ProcessList(string input, bool part2 = false)
         {
-            var lengths = input.Split(',').Select(int.Parse).ToList();
+            var lengths = input.Select(c => (int)c).ToList().Concat(new[] { 17, 31, 73, 47, 23 }).ToList();
 
-            if (part2)
-                lengths = input.Select(c => (int)c).ToList().Concat(new[] { 17, 31, 73, 47, 23 }).ToList();
+            if (!part2)
+                lengths = input.Split(',').Select(int.Parse).ToList();
 
             var list = Enumerable.Range(0, lengths.Count == 4 ? 5 : 256).ToList();
             var currentPos = 0;
